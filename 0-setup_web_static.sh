@@ -5,8 +5,7 @@ apt-get -y update > /dev/null 2>&1
 apt-get -y install nginx > /dev/null 2>&1
 mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
-TEST_INDEX=\
-"<html>
+TEST_INDEX="<html>
     <head>
     </head>
     <body>
