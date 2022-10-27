@@ -2,8 +2,9 @@
 """ Creates an archive from the content of web_static folder """
 from fabric.api import *
 from datetime import datetime
+from fabric.decorators import runs_once
 
-
+@runs_once
 def do_pack():
     """ Creates archive of the web_static folder in
     versions/web_static_<year><month><day><hour><minute><second>.tgz"""
