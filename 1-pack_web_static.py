@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# fabric deployment script
 ''' This fabric file is used to simplify deployment of web_static
 
     Functions:
@@ -14,6 +15,7 @@ def do_pack():
         Format:
             versions/web_static_<year><month><day><hour><minute><second>.tgz
     '''
+    # Creates the versions directory before running
     local("mkdir -p versions")
     archive_path = f"\
 versions/web_static_{datetime.now().strftime('%Y%m%d%H%M%S')}.tgz"
