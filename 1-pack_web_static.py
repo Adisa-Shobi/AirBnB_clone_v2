@@ -5,7 +5,7 @@
         do_pack - creates an archive for of the webstatic in versions
                   folder
 '''
-from fabric.api import local
+from fabric.api import *
 from datetime import datetime
 
 
