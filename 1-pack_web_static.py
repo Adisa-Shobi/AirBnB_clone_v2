@@ -10,8 +10,8 @@ def do_pack():
     """ Creates archive of the web_static folder in
     versions/web_static_<year><month><day><hour><minute><second>.tgz"""
     created_at = datetime.now()
-    archive_path =
-    f"versions/web_static_{created_at.strftime('%Y%m%d%H%M%S')}.tgz"
+    archive_path = f"\
+versions/web_static_{created_at.strftime('%Y%m%d%H%M%S')}.tgz"
     local("mkdir -p versions")
     print(f"Packing web_static to {archive_path}")
     result = local(f"tar -cvzf {archive_path} web_static")
