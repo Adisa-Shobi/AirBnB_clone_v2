@@ -1,25 +1,21 @@
 #!/usr/bin/python3
-# fabric deployment script
-''' This fabric file is used to simplify deployment of web_static
+'''Fabric script to generate .tgz archive'''
 
-    Functions:
-        do_pack - creates an archive for of the webstatic in versions
-                  folder
-'''
-from fabric.api import *
+from fabric.api import local
 from datetime import datetime
 
+from fabric.decorators import runs_once
 
+
+@runs_once
 def do_pack():
-    ''' Creates archive of the web_static folder in
-        Format:
-            versions/web_static_<year><month><day><hour><minute><second>.tgz
-    '''
-    # Creates the versions directory before running
+    '''generates .tgz archive from the contents of the web_static folder'''
     local("mkdir -p versions")
-    archive_path = f"\
-versions/web_static_{datetime.now().strftime('%Y%m%d%H%M%S')}.tgz"
-    result = local(f"tar -cvzf {archive_path} web_static")
-    if result.succeeded:
-        return archive_path
-    return None
+    path = ("versions/web_static_{}.tgz"
+            .format(datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")))
+    result = local("tar -cvzf {} web_static"
+                   .format(path))
+
+    if result.failed:
+        return None
+    return path
