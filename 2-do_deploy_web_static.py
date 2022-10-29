@@ -40,7 +40,7 @@ def do_deploy(archive_path):
     if not os.path.exists(archive_path):
         return False
     archive_name = archive_path.split('/')[-1]
-    folder_name = archive_name[:-4]
+    folder_name = archive_name.replace(".tgz", "")
     try:
         put(local_path=archive_path, remote_path="/tmp/")
         run("mkdir -p /data/web_static/releases/{}".format(folder_name))
@@ -56,6 +56,5 @@ def do_deploy(archive_path):
         /data/web_static/current".format(folder_name))
     except Exception:
         return False
-    else:
-        print("New version deployed!")
-        return True
+    print("New version deployed!")
+    return True
