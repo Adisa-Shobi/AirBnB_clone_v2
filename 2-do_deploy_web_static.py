@@ -19,7 +19,7 @@ env.user = 'ubuntu'
 env.key_filename = '~/.ssh/id_rsa'
 
 
-def do_pack():
+def do_deploy():
     ''' Creates archive of the web_static folder in
         Format:
             versions/web_static_<year><month><day><hour><minute><second>.tgz
