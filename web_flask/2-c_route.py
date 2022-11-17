@@ -22,11 +22,12 @@ def hbnb():
     '''
     return "HBNB"
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def route_c(text):
     '''Route accepts parameter and returns manipulated version
     '''
-    return f"C {text.replace('_', ' ')}"
+    return "C {}".format(text.replace('_', ' '))
 
 
 if __name__ == "__main__":
