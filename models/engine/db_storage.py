@@ -79,3 +79,8 @@ class DBStorage():
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        '''Flushes commits and closes connection with database
+        '''
+        self.__session.close()
