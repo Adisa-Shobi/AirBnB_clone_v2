@@ -45,13 +45,13 @@ class DBStorage():
         if cls is not None and cls in models:
             for obj in self.__session.query(cls).all():
                 result_dict.update(
-                    {f"{obj.__class__.__name__}.{obj.id}": obj}
+                    {"{}.{}".format(obj.__class__.__name__, obj.id): obj}
                 )
         else:
             for model in models:
                 for obj in self.__session.query(model).all():
                     result_dict.update(
-                        {f"{obj.__class__.__name__}.{obj.id}": obj}
+                        {"{}.{}".format(obj.__class__.__name__, obj.id): obj}
                     )
         return result_dict
 
@@ -81,6 +81,6 @@ class DBStorage():
         self.__session = Session()
 
     def close(self):
-        '''Flushes commits and closes connection with database
+        '''Flushes commits and closes current database session
         '''
         self.__session.close()
