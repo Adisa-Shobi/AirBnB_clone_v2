@@ -66,6 +66,6 @@ class FileStorage:
         '''Deletes an object from the __objects
         '''
         if obj is not None:
-            key = f"{obj.__class__.__name__}.{obj.id}"
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key in FileStorage.__objects:
                 del FileStorage.__objects[key]
