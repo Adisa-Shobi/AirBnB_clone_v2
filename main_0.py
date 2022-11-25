@@ -22,15 +22,15 @@ def add_states(number=1):
 
 def wrapper_all_type(m_class):
     res = {}
-    try:
-        res = storage.all(m_class)
-    except:
-        res = {}
+#    try:
+    res = storage.all(m_class)
+#    except:
+#        res = {}
     if res is None or len(res.keys()) == 0:
-        try:
-            res = storage.all(m_class.__name__)
-        except:
-            res = {}
+#        try:
+        res = storage.all(m_class.__name__)
+#        except:
+#            res = {}
     return res
         
 

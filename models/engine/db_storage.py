@@ -34,7 +34,7 @@ class DBStorage():
         self.__engine = create_engine(
             f"mysql+mysqldb://{user}:{password}@{host}/{db}",
             pool_pre_ping=True)
-        if dev_mode and dev_mode.strip() == 'test':
+        if dev_mode == 'test':
             Base.metadata.drop_all()
 
     def all(self, cls=None):
