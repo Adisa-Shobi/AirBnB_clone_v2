@@ -32,7 +32,7 @@ class DBStorage():
         except KeyError:
             print("Warning: Some environment variables were not found")
         self.__engine = create_engine(
-            "mysql+mysqldb://{}:{}@{}/{}".format(
+            "mysql+mysqldb://{}:{}@{}/{}?charset=latin1".format(
                 user,
                 password,
                 host,
