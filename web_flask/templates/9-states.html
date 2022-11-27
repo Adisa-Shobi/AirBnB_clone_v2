@@ -4,7 +4,7 @@
     <TITLE>HBNB</TITLE>
   </HEAD>
   <BODY>
-    {% if states %}
+    {% if states is mapping %}
     <H1>States</H1>
     <UL>
       {% for state in states.values()|sort(attribute='name') %}
