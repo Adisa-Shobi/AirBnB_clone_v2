@@ -32,7 +32,7 @@ class DBStorage():
         except KeyError:
             print("Warning: Some environment variables were not found")
         self.__engine = create_engine(
-            "mysql+mysqldb://{}:{}@{}/{}?charset=latin1".format(
+            "mysql+mysqldb://{}:{}@{}/{}".format(
                 user,
                 password,
                 host,
@@ -44,7 +44,7 @@ class DBStorage():
     def all(self, cls=None):
         '''Return all the all instances of type cls
         '''
-        models = [City, State, User, Place, Review]
+        models = [City, State, User, Place, Review, Amenity]
         result_dict = {}
         if cls is not None and cls in models:
             for obj in self.__session.query(cls).all():
