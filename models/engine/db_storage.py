@@ -32,10 +32,14 @@ class DBStorage():
         except KeyError:
             print("Warning: Some environment variables were not found")
         self.__engine = create_engine(
-            f"mysql+mysqldb://{user}:{password}@{host}/{db}",
-            pool_pre_ping=True)
+            "mysql+mysqldb://{}:{}@{}/{}".format(
+                user,
+                password,
+                host,
+                db
+            ), pool_pre_ping=True)
         if dev_mode == 'test':
-            Base.metadata.drop_all()
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         '''Return all the all instances of type cls
@@ -58,7 +62,14 @@ class DBStorage():
     def new(self, obj):
         '''Adds obj to the current database session
         '''
-        self.__session.add(obj)
+        if obj is not None:
+            try:
+                self.__session.add(obj)
+                self.__session.flush()
+                self.__session.refresh(obj)
+            except Exception as err:
+                self.__session.rollback()
+                raise err
 
     def save(self):
         '''Commits all pending changes to the database
